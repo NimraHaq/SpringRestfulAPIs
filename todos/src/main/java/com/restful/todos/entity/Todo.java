@@ -9,12 +9,12 @@ public class Todo {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
-    private int id;
+    private Long id;
 
-    @Column(name = "title", nullable = false)
+    @Column(name = "title", nullable = false, length = 20)
     private String title;
 
-    @Column(name = "description", nullable = false)
+    @Column(name = "description", nullable = false, length = 100)
     private String description;
 
     @Column(name = "priority", nullable = false)
@@ -29,7 +29,7 @@ public class Todo {
 
     public Todo() {
     }
-    public Todo(int id, String title, String description, int priority, boolean isComplete, User owner) {
+    public Todo(Long id, String title, String description, int priority, boolean isComplete, User owner) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -38,11 +38,11 @@ public class Todo {
         this.owner = owner;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

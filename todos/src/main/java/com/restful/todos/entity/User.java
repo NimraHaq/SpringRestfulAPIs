@@ -25,9 +25,9 @@ public class User implements UserDetails {
     @Column(name = "last_name", nullable = false,length = 48)
     private String lastName;
 
-    @Column(nullable = false, unique = true, length = 100)
+    @Column(nullable = false, unique = true, length = 120)
     private String email;
-    @Column(nullable = false, length = 12)
+    @Column(nullable = false, length = 68)
     private String password;
 
     @CreationTimestamp
