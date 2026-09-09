@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 public class TodoServiceImpl implements TodoService {
 
@@ -29,6 +31,13 @@ public class TodoServiceImpl implements TodoService {
         Todo todo = requestToEntityMapping(todoRequest, user);
         Todo savedTodo = todoRepository.save(todo);
         return entityToResponseMapping(savedTodo);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<TodoResponse> getTodosByUser() {
+        User user = findAuthenticatedUser.getAuthenticatedUser();
+        return todoRepository.findTodosByOwner(user).stream().map(this::entityToResponseMapping).toList();
     }
 
     private Todo requestToEntityMapping(TodoRequest todoRequest, User user){
