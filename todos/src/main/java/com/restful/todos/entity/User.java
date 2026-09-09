@@ -42,8 +42,8 @@ public class User implements UserDetails {
     @ElementCollection(fetch = FetchType.EAGER)
     private List<Authority> authorities;
 
-    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Todo> todos;
+//    @OneToMany(mappedBy = "owner", cascade = CascadeType.ALL, orphanRemoval = true)
+//    private List<Todo> todos;
 
 
     @Override
@@ -137,11 +137,11 @@ public class User implements UserDetails {
         this.lastUpdatedAt = lastUpdatedAt;
     }
 
-    public List<Todo> getTodos() {
-        return todos;
-    }
-
-    public void setTodos(List<Todo> todos) {
-        this.todos = todos;
-    }
+//    public List<Todo> getTodos() {
+//        return todos;
+//    }
+//
+//    public void setTodos(List<Todo> todos) {
+//        this.todos = todos;
+//    }
 }
