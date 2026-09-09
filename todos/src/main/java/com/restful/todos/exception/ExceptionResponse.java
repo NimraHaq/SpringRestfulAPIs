@@ -1,6 +1,6 @@
 package com.restful.todos.exception;
 
-public class ExceptionResponse extends Exception{
+public class ExceptionResponse {
     private int httpStatusCode;
     private String message;
     private long timeStamp;

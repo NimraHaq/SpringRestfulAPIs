@@ -1,40 +1,19 @@
-package com.restful.todos.entity;
+package com.restful.todos.response;
 
-import jakarta.persistence.*;
 
-@Table(name="todos")
-@Entity
-public class Todo {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id", nullable = false)
+public class TodoResponse {
     private Long id;
-
-    @Column(name = "title", nullable = false, length = 20)
     private String title;
-
-    @Column(name = "description", nullable = false, length = 100)
     private String description;
-
-    @Column(name = "priority", nullable = false)
     private int priority;
-
-    @Column(name = "is_complete", nullable = false)
     private boolean isComplete;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner_id", referencedColumnName = "id")
-    private User owner;
-
-    public Todo() {
-    }
-    public Todo( String title, String description, int priority, boolean isComplete, User owner) {
+    public TodoResponse(Long id, String title, String description, int priority, boolean isComplete) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.priority = priority;
         this.isComplete = isComplete;
-        this.owner = owner;
     }
 
     public Long getId() {
@@ -74,15 +53,6 @@ public class Todo {
     }
 
     public void setComplete(boolean complete) {
-        isComplete = complete;
-    }
-
-
-    public User getOwner() {
-        return owner;
-    }
-
-    public void setOwner(User owner) {
-        this.owner = owner;
+        this.isComplete = complete;
     }
 }
