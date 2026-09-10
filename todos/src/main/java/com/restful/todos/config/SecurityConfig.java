@@ -62,7 +62,9 @@ public class SecurityConfig {
         httpSecurity.csrf(customizer -> customizer.disable())
                 .authorizeHttpRequests(configurer ->
                         configurer.requestMatchers("/api/auth/**", "/swagger-ui/**", "/v3/api-docs", "/v3/api-docs/**", "/swagger-resources/**",
-                                "/webjar/**", "/docs").permitAll().anyRequest().authenticated())
+                                "/webjar/**", "/docs").permitAll()
+                                .requestMatchers("/api/admin/**").hasRole("ADMIN")
+                                .anyRequest().authenticated())
                 .exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(authenticationEntryPoint()))
                 .sessionManagement(sessionManagement -> sessionManagement.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
